@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.navbar-items div {
+  @apply font-bold p-3 cursor-pointer;
+}
+
+.navbar-items-desktop div {
+  @apply font-bold p-3 cursor-pointer;
+}
+
+.container {
+  @apply md:w-[1200px]
+}

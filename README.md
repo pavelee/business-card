@@ -1,2 +1,1 @@
-# business-card
-build business card from scratch
+# Business Card
