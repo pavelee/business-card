@@ -32,7 +32,7 @@ const navbarItems = [
     {
         text: "Kontakt",
         anchor: "#kontakt",
-    }
+    },
 ];
 
 const Logo = () => {
@@ -68,14 +68,22 @@ const MobileMenu = (props) => {
 };
 
 const NavbarItems = (props) => {
-    // const { navbarItems } = props;
+    const { navbarItems } = props;
     return (
         <>
             {navbarItems.map((navbarItem) => {
-                return <div><a href={navbarItem.anchor}>{navbarItem.text}</a></div>;
+                return (
+                    <div>
+                        <a href={navbarItem.anchor}>{navbarItem.text}</a>
+                    </div>
+                );
             })}
         </>
     );
+};
+
+const NavbarItemsWrapper = () => {
+    return <NavbarItems navbarItems={navbarItems} />;
 };
 
 const ContextItems = () => {
@@ -128,12 +136,12 @@ export default function Home() {
     const [isNavBarMenuVisible, setIsNavBarMenuVisible] = useState(false);
     const [isContextMenuVisible, setIsContextMenuVisible] = useState(false);
     return (
-        <div>
+        <>
             <Head>
                 <title>{title}</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <main>
+            <header>
                 <div className="hidden md:block z-50 w-full h-[50px] bg-[#f0f1f4]">
                     <div className="container mx-auto">
                         <div className="flex flex-row p-3 justify-between text-center">
@@ -143,14 +151,16 @@ export default function Home() {
                 </div>
                 <div className="bg-white">
                     <div className="container mx-auto">
-                        <MobileMenu
-                            visible={isNavBarMenuVisible}
-                            toggle={setIsNavBarMenuVisible}
-                        >
-                            <div className="flex flex-col navbar-items">
-                                <NavbarItems />
-                            </div>
-                        </MobileMenu>
+                        <nav>
+                            <MobileMenu
+                                visible={isNavBarMenuVisible}
+                                toggle={setIsNavBarMenuVisible}
+                            >
+                                <div className="flex flex-col navbar-items">
+                                    <NavbarItemsWrapper />
+                                </div>
+                            </MobileMenu>
+                        </nav>
                         <MobileMenu
                             visible={isContextMenuVisible}
                             toggle={setIsContextMenuVisible}
@@ -173,7 +183,9 @@ export default function Home() {
                                 </div>
                             </div>
                             <div className="flex-auto text-center md:text-left">
-                                <Logo />
+                                <a href="/">
+                                    <Logo />
+                                </a>
                             </div>
                             <div
                                 className="md:hidden shrink cursor-pointer mt-2 pl-3"
@@ -187,14 +199,18 @@ export default function Home() {
                                     <div className="h-1 w-1 rounded-xl bg-black"></div>
                                 </div>
                             </div>
-                            <div className="hidden md:block flex-auto">
-                                <div className="navbar-items-desktop flex flex-row gap-10 justify-end">
-                                    <NavbarItems />
+                            <nav>
+                                <div className="hidden md:block flex-auto">
+                                    <div className="navbar-items-desktop flex flex-row gap-10 justify-end">
+                                        <NavbarItemsWrapper />
+                                    </div>
                                 </div>
-                            </div>
+                            </nav>
                         </div>
                     </div>
                 </div>
+            </header>
+            <main>
                 <div
                     className="flex bg-cover bg-center justify-center h-screen-md w-screen"
                     style={{ backgroundImage: `url("/bg.webp")` }}
@@ -286,6 +302,8 @@ export default function Home() {
                         </DescriptionBox>
                     </div>
                 </div>
+            </main>
+            <footer>
                 <div className="mt-10 border-t pt-10">
                     <div className="container mx-auto">
                         <div className="flex flex-col md:flex-row gap-14">
@@ -307,7 +325,7 @@ export default function Home() {
                         </div>
                     </div>
                 </div>
-            </main>
-        </div>
+            </footer>
+        </>
     );
 }
