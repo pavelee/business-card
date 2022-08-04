@@ -12,6 +12,28 @@ import Image from "next/image";
 
 const title = "Business Card";
 const phone = "+48 123 123 123";
+const navbarItems = [
+    {
+        text: "O nas",
+        anchor: "#onas",
+    },
+    {
+        text: "Program",
+        anchor: "#program",
+    },
+    {
+        text: "Zajęcia",
+        anchor: "#zajecia",
+    },
+    {
+        text: "Rekrutacja",
+        anchor: "#rekrutacja",
+    },
+    {
+        text: "Kontakt",
+        anchor: "#kontakt",
+    }
+];
 
 const Logo = () => {
     return <Image src={"/logo.webp"} width={204} height={50} alt={"logo"} />;
@@ -45,14 +67,13 @@ const MobileMenu = (props) => {
     );
 };
 
-const NavbarItems = () => {
+const NavbarItems = (props) => {
+    // const { navbarItems } = props;
     return (
         <>
-            <div>O nas</div>
-            <div>Program</div>
-            <div>Zajęcia</div>
-            <div>Rekrutacja</div>
-            <div>Kontakt</div>
+            {navbarItems.map((navbarItem) => {
+                return <div><a href={navbarItem.anchor}>{navbarItem.text}</a></div>;
+            })}
         </>
     );
 };
