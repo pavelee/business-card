@@ -42,16 +42,19 @@ const Logo = () => {
 const MobileMenu = (props) => {
     const { visible = false, children, toggle } = props;
     const [isVisible, setIsVisible] = useState(visible);
+    const [classes, setClasses] = useState('');
 
     useEffect(() => {
+        if (visible) {
+            setClasses('translate-y-0');
+        } else {
+            setClasses('');
+        }
         setIsVisible(visible);
     }, [visible]);
 
-    if (isVisible === false) {
-        return <></>;
-    }
     return (
-        <div className="fixed top-0 w-full rounded-xl p-5 bg-white z-50 opacity-95">
+        <div className={`transition-all duration-500 -translate-y-full fixed top-0 w-full rounded-xl p-5 bg-white z-50 opacity-95 ` + classes}>
             <div className="flex justify-end">
                 <div className="shrink">
                     <FaRegWindowClose
@@ -132,6 +135,25 @@ const DescriptionBox = (props) => {
     );
 };
 
+const Burger = (props) => {
+    const { onClick, width = 7 } = props;
+    const burgerSliceClasses = `h-1 w-${width} rounded-sm mb-1 bg-black`;
+    return (
+        <div
+            className="md:hidden shrink cursor-pointer"
+            onClick={() => {
+                onClick();
+            }}
+        >
+            <div className="flex flex-col">
+                <div className={burgerSliceClasses}></div>
+                <div className={burgerSliceClasses}></div>
+                <div className={burgerSliceClasses}></div>
+            </div>
+        </div>
+    );
+};
+
 export default function Home() {
     const [isNavBarMenuVisible, setIsNavBarMenuVisible] = useState(false);
     const [isContextMenuVisible, setIsContextMenuVisible] = useState(false);
@@ -170,34 +192,25 @@ export default function Home() {
                             </div>
                         </MobileMenu>
                         <div className="flex p-5 md:p-5">
-                            <div
-                                className="md:hidden shrink cursor-pointer mt-2 pr-3"
-                                onClick={() => {
-                                    setIsNavBarMenuVisible(true);
-                                }}
-                            >
-                                <div className="flex flex-col">
-                                    <div className="h-1 w-7 rounded-sm mb-1 bg-black"></div>
-                                    <div className="h-1 w-7 rounded-sm mb-1 bg-black"></div>
-                                    <div className="h-1 w-7 rounded-sm bg-black"></div>
-                                </div>
+                            <div className="mt-2 pr-3">
+                                <Burger
+                                    onClick={() => {
+                                        setIsNavBarMenuVisible(true);
+                                    }}
+                                />
                             </div>
                             <div className="flex-auto text-center md:text-left">
                                 <a href="/">
                                     <Logo />
                                 </a>
                             </div>
-                            <div
-                                className="md:hidden shrink cursor-pointer mt-2 pl-3"
-                                onClick={() => {
-                                    setIsContextMenuVisible(true);
-                                }}
-                            >
-                                <div className="flex flex-col">
-                                    <div className="h-1 w-1 rounded-xl mb-1 bg-black"></div>
-                                    <div className="h-1 w-1 rounded-xl mb-1 bg-black"></div>
-                                    <div className="h-1 w-1 rounded-xl bg-black"></div>
-                                </div>
+                            <div className="mt-2 pl-3">
+                                <Burger
+                                    onClick={() => {
+                                        setIsContextMenuVisible(true);
+                                    }}
+                                    width={1}
+                                />
                             </div>
                             <nav>
                                 <div className="hidden md:block flex-auto">
