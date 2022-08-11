@@ -36,28 +36,29 @@ const navbarItems = [
 ];
 
 const Logo = () => {
-    return <Image src={"https://picsum.photos/204/50"} width={204} height={50} alt={"logo"} />;
+    return (
+        <Image
+            src={"https://picsum.photos/204/50"}
+            width={204}
+            height={50}
+            alt={"logo"}
+        />
+    );
 };
 
 const MobileMenu = (props) => {
-    const { visible = false, children, toggle } = props;
+    const { visible = true, children, toggle } = props;
     const [isVisible, setIsVisible] = useState(visible);
-    const [classes, setClasses] = useState("");
 
     useEffect(() => {
-        if (visible) {
-            setClasses("translate-y-0");
-        } else {
-            setClasses("");
-        }
         setIsVisible(visible);
     }, [visible]);
 
     return (
         <div
             className={
-                `transition-all duration-500 -translate-y-full fixed top-0 w-full rounded-xl p-5 bg-white z-50 opacity-95 ` +
-                classes
+                `transition-all duration-500 fixed top-0 w-full rounded-xl p-5 bg-white z-50 opacity-95 ` +
+                (visible ? 'translate-y-0' : '-translate-y-full')
             }
         >
             <div className="flex justify-end">
@@ -81,7 +82,7 @@ const NavbarItems = (props) => {
         <>
             {navbarItems.map((navbarItem) => {
                 return (
-                    <div>
+                    <div key={navbarItem.anchor}>
                         <a href={navbarItem.anchor}>{navbarItem.text}</a>
                     </div>
                 );
@@ -111,9 +112,7 @@ const ContextItems = () => {
             </div>
             <div>
                 <FaLocationArrow className="inline-block" />
-                <span className="inline-block ml-2">
-                    Adress...
-                </span>
+                <span className="inline-block ml-2">Adress...</span>
             </div>
             <div>
                 <FaClock className="inline-block" />
@@ -139,8 +138,14 @@ const DescriptionBox = (props) => {
 };
 
 const Burger = (props) => {
+    const defaultBurgerClasses = 'h-1 rounded-sm mb-1 bg-black';
     const { onClick, width = 7 } = props;
-    const burgerSliceClasses = `h-1 w-${width} rounded-sm mb-1 bg-black`;
+    const [burgerClasses, setBurgerClasses] = useState(defaultBurgerClasses);
+
+    useEffect(() => {
+        setBurgerClasses(defaultBurgerClasses + ' ' + 'w-'+ width)
+    }, []);
+    
     return (
         <div
             className="md:hidden shrink cursor-pointer"
@@ -149,9 +154,9 @@ const Burger = (props) => {
             }}
         >
             <div className="flex flex-col">
-                <div className={burgerSliceClasses}></div>
-                <div className={burgerSliceClasses}></div>
-                <div className={burgerSliceClasses}></div>
+                <div className={burgerClasses}></div>
+                <div className={burgerClasses}></div>
+                <div className={burgerClasses}></div>
             </div>
         </div>
     );
