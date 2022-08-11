@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import Head from "next/head";
 import {
-    FaDoorOpen,
     FaPhoneAlt,
     FaLocationArrow,
     FaClock,
@@ -11,50 +10,56 @@ import {
 import Image from "next/image";
 
 const title = "Business Card";
+const sign = "businesscard © 2022";
 const phone = "+48 123 123 123";
 const navbarItems = [
     {
-        text: "O nas",
-        anchor: "#onas",
+        text: "About us",
+        anchor: "#aboutus",
     },
     {
-        text: "Program",
-        anchor: "#program",
+        text: "Training",
+        anchor: "#training",
     },
     {
-        text: "Zajęcia",
-        anchor: "#zajecia",
+        text: "Classes",
+        anchor: "#classes",
     },
     {
-        text: "Rekrutacja",
-        anchor: "#rekrutacja",
+        text: "Process",
+        anchor: "#process",
     },
     {
-        text: "Kontakt",
-        anchor: "#kontakt",
+        text: "Contact",
+        anchor: "#contact",
     },
 ];
 
 const Logo = () => {
-    return <Image src={"/logo.webp"} width={204} height={50} alt={"logo"} />;
+    return <Image src={"https://picsum.photos/204/50"} width={204} height={50} alt={"logo"} />;
 };
 
 const MobileMenu = (props) => {
     const { visible = false, children, toggle } = props;
     const [isVisible, setIsVisible] = useState(visible);
-    const [classes, setClasses] = useState('');
+    const [classes, setClasses] = useState("");
 
     useEffect(() => {
         if (visible) {
-            setClasses('translate-y-0');
+            setClasses("translate-y-0");
         } else {
-            setClasses('');
+            setClasses("");
         }
         setIsVisible(visible);
     }, [visible]);
 
     return (
-        <div className={`transition-all duration-500 -translate-y-full fixed top-0 w-full rounded-xl p-5 bg-white z-50 opacity-95 ` + classes}>
+        <div
+            className={
+                `transition-all duration-500 -translate-y-full fixed top-0 w-full rounded-xl p-5 bg-white z-50 opacity-95 ` +
+                classes
+            }
+        >
             <div className="flex justify-end">
                 <div className="shrink">
                     <FaRegWindowClose
@@ -94,7 +99,7 @@ const ContextItems = () => {
         <>
             <div>
                 <FaExclamationCircle className="inline-block" />
-                <span className="inline-block ml-2">Otwarte zapisy!</span>
+                <span className="inline-block ml-2">Open!</span>
             </div>
             <div>
                 <FaPhoneAlt className="inline-block" />{" "}
@@ -107,12 +112,12 @@ const ContextItems = () => {
             <div>
                 <FaLocationArrow className="inline-block" />
                 <span className="inline-block ml-2">
-                    ul. Nieznana 6/12, Warszawa
+                    Adress...
                 </span>
             </div>
             <div>
                 <FaClock className="inline-block" />
-                <span className="inline-block ml-2">Pn–Pt: 7:30–18:30</span>
+                <span className="inline-block ml-2">Mon-Fri: 7:30–18:30</span>
             </div>
         </>
     );
@@ -126,10 +131,8 @@ const DescriptionBox = (props) => {
                 <h2 className="text-2xl mb-5">{title}</h2>
                 {children}
             </div>
-            <div className="order-1 mb-5 md:mb-0 md:order-2 md:basis-1/2">
-                <div className="flex justify-center">
-                    <div className="shrink">{image}</div>
-                </div>
+            <div className="order-1 mb-5 md:mb-0 md:order-2 md:basis-1/2 flex justify-center items-center">
+                {image}
             </div>
         </div>
     );
@@ -226,16 +229,19 @@ export default function Home() {
             <main>
                 <div
                     className="flex bg-cover bg-center justify-center h-screen-md w-screen"
-                    style={{ backgroundImage: `url("/bg.webp")` }}
+                    style={{
+                        backgroundImage: `url("https://picsum.photos/1920/1080")`,
+                    }}
                 >
                     <div className="container mx-auto">
                         <div className="w-[80%] md:w-[60%] bg-white opacity-80 mx-auto p-5 rounded-xl mt-16 mb-16 md:mt-[10rem] md:mb-[10rem]">
                             <div className="text-2xl">
-                                "Bardzo ważne jest zrozumienie, że inteligencja
-                                emocjonalna nie jest przeciwieństwem
-                                inteligencji, nie jest to triumf serca nad głową
-                                - jest to unikalne skrzyżowanie obu" ~ Dorota
-                                Ciosek
+                                Quis cupidatat ut non pariatur cupidatat ex
+                                excepteur anim sint dolore id eu minim. Ipsum
+                                anim mollit qui tempor commodo aliqua magna
+                                sunt. Ipsum anim qui irure commodo. Anim Lorem
+                                sit qui nulla dolore nostrud reprehenderit
+                                tempor.
                             </div>
                         </div>
                     </div>
@@ -243,32 +249,39 @@ export default function Home() {
                 <div className="flex flex-row mt-10">
                     <div className="container mx-auto">
                         <DescriptionBox
-                            title={"O nas"}
+                            title={
+                                "Occaecat qui ea anim laborum et enim in eiusmod est eiusmod minim."
+                            }
                             image={
                                 <Image
-                                    src={"/a1.webp"}
+                                    src={"https://picsum.photos/480/320"}
                                     width={480}
                                     height={320}
                                 />
                             }
                         >
                             <p className="mb-3">
-                                Jesteśmy przedszkolem, które powstało z myślą o
-                                rozwoju inteligencji emocjonalnej u Dzieci.
+                                Adipisicing non velit velit cillum sit deserunt.
+                                Ex consequat aliqua sunt labore quis voluptate
+                                ipsum nisi ut laboris enim. Tempor nostrud ad
+                                incididunt ut sunt tempor voluptate anim ipsum
+                                enim proident. Anim sit ad excepteur enim
+                                mollit. Aliqua est laborum tempor culpa sit non
+                                nostrud tempor nulla voluptate quis
+                                reprehenderit.
                             </p>
                             <p className="mb-3">
-                                Mamy świadomość, że umiejętność radzenia sobie z
-                                emocjami to najlepsze wyposażenie Dziecka na
-                                przyszłość, bowiem sukces w dorosłym życiu
-                                zależy w dużej mierze od umiejętności kierowania
-                                swoimi emocjami.
+                                Culpa elit ipsum ullamco sint ex. Ex dolor in
+                                nostrud pariatur incididunt qui. Exercitation
+                                aliquip eiusmod esse cupidatat non aute aliquip
+                                velit esse ut exercitation magna.
                             </p>
                             <p>
-                                Naszym priorytetem jest stworzenie przyjaznego i
-                                stymulującego miejsca, gdzie dzieci będą mogły
-                                zdobyć umiejętność rozumienia, wyrażania, a
-                                przede wszystkim świadomego kontrolowania
-                                własnych emocji.
+                                Ipsum veniam nostrud culpa do consectetur minim
+                                consectetur. Pariatur eu est in consequat sint
+                                excepteur excepteur incididunt do magna
+                                exercitation tempor. Commodo elit commodo cillum
+                                occaecat non consectetur incididunt.
                             </p>
                         </DescriptionBox>
                     </div>
@@ -277,40 +290,44 @@ export default function Home() {
                     <div className="container mx-auto">
                         <DescriptionBox
                             title={
-                                "Nasza misja: rozwój inteligencji emocjonalnej przez zabawę"
+                                "Ea nostrud deserunt aliqua labore irure laboris qui eiusmod quis sit aliqua laboris qui occaecat."
                             }
                             image={
                                 <Image
-                                    src={"/a2.webp"}
+                                    src={"https://picsum.photos/480/320"}
                                     width={480}
                                     height={320}
                                 />
                             }
                         >
                             <p className="mb-3">
-                                Rozwój inteligencji emocjonalnej (EQ) następuje
-                                już od początku życia. Jednak kluczowym momentem
-                                nabycia i ukształtowania świadomości
-                                emocjonalnej jest wiek przedszkolny. Dlatego tak
-                                ważne jest, aby w tym czasie Dziecko nauczyło
-                                się identyfikować swoje emocje, nazywać je,
-                                akceptować, oraz reagować poprawnie.
+                                Tempor do in ea Lorem cillum eiusmod aute tempor
+                                voluptate ex commodo deserunt culpa. Id id eu
+                                velit do nulla. Ex qui nulla ullamco voluptate
+                                ad et aliqua est non. Qui non non duis deserunt
+                                non mollit et et. Eu occaecat sint ex minim et
+                                veniam incididunt sunt laborum. Labore dolore
+                                culpa dolore est sunt duis aute dolor velit.
                             </p>
                             <p className="mb-3">
-                                W celu osiągnięcia inteligencji emocjonalnej,
-                                nie wystarczy znajomość teorii, dotyczącej
-                                zagadnienia. Sukces tkwi w świadomym i
-                                konsekwentnym nauczaniu poprzez odpowiedni
-                                program, który kontynuowany jest działaniami
-                                Rodziców w domu.
+                                Consequat id occaecat pariatur aute do dolore
+                                dolor laborum incididunt reprehenderit cillum
+                                aute. Culpa culpa tempor eiusmod elit consequat
+                                non eiusmod. Cupidatat ea laboris aliquip anim
+                                tempor in commodo veniam aute labore. Dolore
+                                Lorem culpa cillum laboris enim duis. Minim
+                                aliqua fugiat ex minim cupidatat culpa nulla.
+                                Quis qui eu id deserunt sit quis aliquip anim
+                                excepteur Lorem ad voluptate.
                             </p>
                             <p>
-                                Dzięki temu Dziecko będzie w stanie zaakceptować
-                                siebie; utrzymywać prawidłowe relacje z
-                                rówieśnikami, rodzicami i wychowawcami;
-                                skutecznie motywować się do działania (nawet
-                                pomimo pojawiających się niesprzyjających
-                                okoliczności); osiągać sukcesy w przyszłości.
+                                Consequat veniam aliqua culpa tempor elit. Qui
+                                excepteur do elit mollit. Aliqua non magna duis
+                                mollit non pariatur sunt sunt ipsum in in. Irure
+                                aliqua fugiat labore velit reprehenderit culpa
+                                in culpa. Duis minim quis sunt ea dolor aliquip
+                                ex aute. Ex duis in velit veniam enim amet.
+                                Officia eu culpa fugiat veniam commodo velit.
                             </p>
                         </DescriptionBox>
                     </div>
@@ -334,7 +351,7 @@ export default function Home() {
                             </div>
                         </div>
                         <div className="flex justify-center p-5 mt-10">
-                            <div className="shrink">oknonaswiat © 2022</div>
+                            <div className="shrink">{sign}</div>
                         </div>
                     </div>
                 </div>
